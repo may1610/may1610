@@ -1,0 +1,12 @@
+CourseFinalProject\TestMasterSuite.class
+common\Constants.class
+common\DataHelper.class
+CourseFinalProject\steps\RegisterSteps.class
+CourseFinalProject\steps\serenity\TestMasterUserSteps.class
+CourseFinalProject\pages\TestMasterAdminPage.class
+common\MailReader.class
+CourseFinalProject\steps\SendNewsSteps.class
+CourseFinalProject\steps\serenity\TestMasterAdminSteps.class
+common\Utility.class
+CourseFinalProject\pages\TestMasterPage.class
+common\DataHelper$1.class
