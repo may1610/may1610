@@ -1,0 +1,1 @@
+mvn clean verify -Dwebdriver.driver=chrome -Dcucumber.options="--tags case2"
