@@ -9,6 +9,7 @@ import net.thucydides.core.annotations.Step;
 public class TestMasterAdminSteps {
 
 	TestMasterAdminPage testMasterAdminPage;
+	String currentTagText = "";
 
 	@Step
 	public void do_login() {
@@ -29,8 +30,8 @@ public class TestMasterAdminSteps {
 	}
 	
 	@Step
-	public void complete_providing_info() {
-		testMasterAdminPage.complete_providing_info();
+	public void complete_providing_news_info() {
+		testMasterAdminPage.complete_providing_news_info();
 	}
 	
 	@Step
@@ -74,8 +75,8 @@ public class TestMasterAdminSteps {
 	}
 
 	@Step
-	public void send_news_later() {
-		testMasterAdminPage.send_news_later();
+	public void send_news_later(String date, String time) {
+		testMasterAdminPage.send_news_later(date, time);
 	}
 
 	@Step
@@ -86,19 +87,9 @@ public class TestMasterAdminSteps {
 	}
 
 	@Step
-	public void enter_all_news_info_and_time_to_send(String name, String subject, String newsContent, String date,
-			String time) {
-		testMasterAdminPage.enter_name(name);
-		testMasterAdminPage.enter_subject(subject);
-		testMasterAdminPage.enter_news_content(newsContent);
-		testMasterAdminPage.enter_date(date);
-		testMasterAdminPage.enter_time(time);
-	}
-
-	@Step
 	public void shoud_see_send_news_success(String successMassage) throws Exception {
 		assertThat(testMasterAdminPage.get_send_news_success_message(), is(equalTo(successMassage)));
-		assertThat(testMasterAdminPage.is_receive_news_email(), is(true));
+		//assertThat(testMasterAdminPage.is_receive_news_email(), is(true));
 	}
 
 	@Step
@@ -114,5 +105,21 @@ public class TestMasterAdminSteps {
 	@Step
 	public void shoud_see_required_content_message(String requiredContentMessage) throws Exception {
 		assertThat(testMasterAdminPage.get_required_content_message(), is(equalTo(requiredContentMessage)));		
+	}
+	
+	@Step
+	public void shoud_see_merge_tag_list_displayed() throws Exception {
+		assertThat(testMasterAdminPage.is_merge_tag_displayed(), is(true));		
+	}
+	
+	@Step
+	public void select_merge_tag(String tagText){
+		currentTagText = tagText;		
+		testMasterAdminPage.select_merge_tag(tagText);		
+	}
+	
+	@Step
+	public void should_see_the_merge_tag_will_be_marked_as_block() {		
+		assertThat(testMasterAdminPage.is_merge_tag_marked_as_block(currentTagText), is(true));		
 	}
 }

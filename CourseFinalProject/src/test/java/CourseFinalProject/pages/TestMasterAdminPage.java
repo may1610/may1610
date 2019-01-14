@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.mail.Message;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,7 @@ import BusinessObject.Account;
 import common.Constants;
 import common.MailReader;
 import common.Utility;
+import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
@@ -50,8 +52,9 @@ public class TestMasterAdminPage extends PageObject {
 	@FindBy(xpath = ".//div[@class = 'note-editing-area']/../../div[@class='error']")
 	private WebElementFacade lblBodyRequired;
 
-	@FindBy(xpath = ".//input[@type='file' and @name='myfile']")
-	private WebElementFacade btnAttach;
+	// why find this not OK ????
+	// @FindBy(xpath = ".//input[@type='file' and @name='myfile']")
+	// private WebElementFacade btnAttach;
 
 	@FindBy(xpath = ".//button[contains(@class,'btn-next')]")
 	private WebElementFacade btnNext;
@@ -65,19 +68,17 @@ public class TestMasterAdminPage extends PageObject {
 	@FindBy(id = "input-time")
 	private WebElementFacade calTime;
 
-	@FindBy(id = ".//button[contains(@class,'btn-save-news')]")
+	@FindBy(xpath = ".//button[contains(@class,'btn-save-news')]")
 	private WebElementFacade btnSendLater;
 
 	@FindBy(xpath = ".//div[@id='popover']//div[@class='body-message']")
 	private WebElementFacade dialogMessage;
-	
+
 	@FindBy(xpath = ".//div[@class='content']")
 	private WebElementFacade divInfo;
-	
 
-	public void scroll_to_attach() {		
-		Utility.scrolled_element_into_view(getDriver(), btnAttach);
-	}
+	@FindBy(xpath = ".//div[contains(@class, 'note-hint-popover') and contains(@style, 'display: block')]")
+	private WebElementFacade mergeTagList;
 
 	public void enter_email(String email) {
 		txtEmail.clear();
@@ -107,25 +108,34 @@ public class TestMasterAdminPage extends PageObject {
 
 	public void enter_news_content(String content) {
 		editorBody.clear();
-		editorBody.type(content);		
+		editorBody.type(content);
 	}
 
 	public void select_send_news() {
-		mnuSendNews.click();		
+		mnuSendNews.click();
 	}
 
 	public void add_file() {
-		Utility.scrolled_element_into_view(getDriver(), btnAttach);
+		JavascriptExecutor js = (JavascriptExecutor) getDriver();
+		/*
+		 * I can not scroll by js below so I do hard code line var div =
+		 * document.querySelector(".content"); var btnAttach =
+		 * document.querySelector(".attachment-select'"); var topPos =
+		 * btnAttach.offsetTop; div.scrollTop = topPos;
+		 */
+		js.executeScript("var div = document.querySelector('.content'); div.scrollTop = 700;");
+		WebElement btnAttach = divInfo.findElement(By.xpath("//input[@name='myfile']")); // why I have to do this to
+																							// find element OK?
 		upload("dataFiles\\test.txt").to(btnAttach);
 	}
 
-	public void complete_providing_info() {
+	public void send_news() {
 		btnNext.click();
+		btnSendNow.click();
 	}
 
-	public void send_news() {
-		// btnNext.click();
-		btnSendNow.click();
+	public void complete_providing_news_info() {
+		btnNext.click();
 	}
 
 	public void enter_date(String date) {
@@ -133,10 +143,16 @@ public class TestMasterAdminPage extends PageObject {
 	}
 
 	public void enter_time(String time) {
-		calDate.typeAndTab(time);
+		calTime.click();
+		WebElement timeItem = getDriver().findElement(
+				By.xpath(".//ul[contains(@class,'time-selector-dropdown')]//a[contains(text(),'" + time + "')]"));
+		timeItem.click();
 	}
 
-	public void send_news_later() {
+	public void send_news_later(String date, String time) {
+		btnNext.click();
+		enter_date(date);
+		enter_time(time);
 		btnSendLater.click();
 	}
 
@@ -155,6 +171,22 @@ public class TestMasterAdminPage extends PageObject {
 
 	public String get_required_content_message() {
 		return lblBodyRequired.getText();
+	}
+
+	public boolean is_merge_tag_displayed() {
+		return mergeTagList.isCurrentlyVisible();
+	}
+
+	public void select_merge_tag(String tagText) {
+		WebElement element = getDriver().findElement(By.xpath(
+				".//div[contains(@class, 'note-hint-popover') and contains(@style, 'display: block')]//div[contains(@class,'note-hint-item') and contains(text(),'"
+						+ tagText + "')]"));
+		element.click();
+	}
+
+	public boolean is_merge_tag_marked_as_block(String tagText) {
+		WebElement element = getDriver().findElement(By.xpath(".//span[@class='merge-tag' and contains(text(),'" + tagText + "')]"));
+		return element.isDisplayed();
 	}
 
 	/**
