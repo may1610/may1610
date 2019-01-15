@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="CourseFinalProject.TestMasterSuite" time="1.371" tests="0" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="CourseFinalProject.TestMasterSuite" time="196.503" tests="5" errors="1" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="cucumber.options" value="--tags case6"/>
+    <property name="cucumber.options" value="--tags case1"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_191\jre\bin"/>
     <property name="java.vm.version" value="25.191-b12"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\may\Documents\GitHub\may1610\CourseFinalProject"/>
+    <property name="maven.multiModuleProjectDirectory" value="D:\Selenium_Testmaster\Source\CourseFinalProject"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -17,7 +17,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\may\Documents\GitHub\may1610\CourseFinalProject"/>
+    <property name="user.dir" value="D:\Selenium_Testmaster\Source\CourseFinalProject"/>
     <property name="webdriver.driver" value="chrome"/>
     <property name="java.runtime.version" value="1.8.0_191-b12"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
@@ -47,7 +47,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_191\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean verify -Dwebdriver.driver=chrome -Dcucumber.options=--tags case6"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean verify -Dwebdriver.driver=chrome -Dcucumber.options=--tags case1"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -66,4 +66,51 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
+  <testcase name="Not able to register with an invalid email" classname="Subscribe testmaster.vn" time="35.743"/>
+  <testcase name="Not able to register with an invalid email" classname="Subscribe testmaster.vn" time="32.856"/>
+  <testcase name="Not able to register with an invalid email" classname="Subscribe testmaster.vn" time="32.365"/>
+  <testcase name="Not able to register with an invalid email" classname="Subscribe testmaster.vn" time="56.345">
+    <error message="The following error occurred: chrome not reachable&#10;  (Session info: chrome=71.0.3578.98)&#10;  (Driver info: chromedriver=2.44.609538 (b655c5a60b0b544917107a59d4153d4bf78e1b90),platform=Windows NT 10.0.15063 x86_64) (WARNING: The server did not provide any stacktrace information)&#10;Command duration or timeout: 0 milliseconds&#10;Build info: version: &apos;3.7.1&apos;, revision: &apos;8a0099a&apos;, time: &apos;2017-11-06T21:01:39.354Z&apos;&#10;System info: host: &apos;DESKTOP-D14S1L5&apos;, ip: &apos;192.168.253.2&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_191&apos;&#10;Driver info: org.openqa.selenium.remote.RemoteWebDriver&#10;Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.44.609538 (b655c5a60b0b54..., userDataDir: C:\Users\may\AppData\Local\...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:62130}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: ignore, unhandledPromptBehavior: ignore, version: 71.0.3578.98, webStorageEnabled: true}&#10;Session ID: 128aeb7b522bf3b9074f9d2a6dc910d8" type="net.serenitybdd.core.exceptions.SerenityManagedException">net.serenitybdd.core.exceptions.SerenityManagedException: 
+The following error occurred: chrome not reachable
+  (Session info: chrome=71.0.3578.98)
+  (Driver info: chromedriver=2.44.609538 (b655c5a60b0b544917107a59d4153d4bf78e1b90),platform=Windows NT 10.0.15063 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+Build info: version: '3.7.1', revision: '8a0099a', time: '2017-11-06T21:01:39.354Z'
+System info: host: 'DESKTOP-D14S1L5', ip: '192.168.253.2', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_191'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.44.609538 (b655c5a60b0b54..., userDataDir: C:\Users\may\AppData\Local\...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:62130}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: ignore, unhandledPromptBehavior: ignore, version: 71.0.3578.98, webStorageEnabled: true}
+Session ID: 128aeb7b522bf3b9074f9d2a6dc910d8
+</error>
+    <system-err><![CDATA[[main] INFO net.serenitybdd.core.Serenity - 
+        __    _____ _____ ____ _____   ____   _    ____  ____  _____ ____  
+  _     \ \  |_   _| ____/ ___|_   _| |  _ \ / \  / ___|/ ___|| ____|  _ \ 
+ (_)_____| |   | | |  _| \___ \ | |   | |_) / _ \ \___ \\___ \|  _| | | | |
+  _|_____| |   | | | |___ ___) || |   |  __/ ___ \ ___) |___) | |___| |_| |
+ (_)     | |   |_| |_____|____/ |_|   |_| /_/   \_\____/|____/|_____|____/ 
+        /_/                                                                
+
+TEST PASSED: Not able to register with an invalid email
+----------------------------------------------------------------------------
+Jan 16, 2019 12:47:32 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+[1547574476.839][WARNING]: Timed out connecting to Chrome, retrying...
+[1547574482.866][WARNING]: Timed out connecting to Chrome, retrying...
+[1547574488.880][WARNING]: Timed out connecting to Chrome, retrying...
+[1547574494.896][WARNING]: Timed out connecting to Chrome, retrying...
+[1547574500.913][WARNING]: Timed out connecting to Chrome, retrying...
+[main] ERROR net.serenitybdd.core.Serenity - 
+           __  _____ _____ ____ _____   _____ _    ___ _     _____ ____  
+  _       / / |_   _| ____/ ___|_   _| |  ___/ \  |_ _| |   | ____|  _ \ 
+ (_)_____| |    | | |  _| \___ \ | |   | |_ / _ \  | || |   |  _| | | | |
+  _|_____| |    | | | |___ ___) || |   |  _/ ___ \ | || |___| |___| |_| |
+ (_)     | |    |_| |_____|____/ |_|   |_|/_/   \_\___|_____|_____|____/ 
+          \_\                                                            
+
+TEST FAILED WITH ERROR: Not able to register with an invalid email
+---------------------------------------------------------------------
+[main] ERROR net.serenitybdd.core.Serenity - TEST FAILED AT STEP Is on home page
+[main] ERROR net.serenitybdd.core.Serenity - The following error occurred: chrome not reachable  (Session info: chrome=71.0.3578.98)  (Driver info: chromedriver=2.44.609538 (b655c5a60b0b544917107a59d4153d4bf78e1b90),platform=Windows NT 10.0.15063 x86_64) (WARNING: The server did not provide any stacktrace information)Command duration or timeout: 0 millisecondsBuild info: version: '3.7.1', revision: '8a0099a', time: '2017-11-06T21:01:39.354Z'System info: host: 'DESKTOP-D14S1L5', ip: '192.168.253.2', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_191'Driver info: org.openqa.selenium.remote.RemoteWebDriverCapabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.44.609538 (b655c5a60b0b54..., userDataDir: C:\Users\may\AppData\Local\...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:62130}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: ignore, unhandledPromptBehavior: ignore, version: 71.0.3578.98, webStorageEnabled: true}Session ID: 128aeb7b522bf3b9074f9d2a6dc910d8Build info: version: '3.7.1', revision: '8a0099a', time: '2017-11-06T21:01:39.354Z'System info: host: 'DESKTOP-D14S1L5', ip: '192.168.253.2', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_191'Driver info: driver.version: unknown
+]]></system-err>
+  </testcase>
+  <testcase name="Not able to register with an invalid email" classname="Subscribe testmaster.vn" time="36.683"/>
 </testsuite>

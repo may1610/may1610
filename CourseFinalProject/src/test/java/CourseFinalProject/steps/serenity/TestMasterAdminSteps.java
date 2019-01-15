@@ -65,8 +65,8 @@ public class TestMasterAdminSteps {
 	}
 
 	@Step
-	public void add_file() {
-		testMasterAdminPage.add_file();
+	public void add_files() throws Exception {
+		testMasterAdminPage.add_files();
 	}
 
 	@Step
@@ -89,7 +89,7 @@ public class TestMasterAdminSteps {
 	@Step
 	public void shoud_see_send_news_success(String successMassage) throws Exception {
 		assertThat(testMasterAdminPage.get_send_news_success_message(), is(equalTo(successMassage)));
-		//assertThat(testMasterAdminPage.is_receive_news_email(), is(true));
+		assertThat(testMasterAdminPage.is_receive_news_email(), is(true));
 	}
 
 	@Step
@@ -121,5 +121,10 @@ public class TestMasterAdminSteps {
 	@Step
 	public void should_see_the_merge_tag_will_be_marked_as_block() {		
 		assertThat(testMasterAdminPage.is_merge_tag_marked_as_block(currentTagText), is(true));		
+	}
+	
+	@Step
+	public void should_see_the_list_of_files_with_corresponding_file_icon() {		
+		assertThat(testMasterAdminPage.is_list_of_attached_files_display(), is(true));		
 	}
 }

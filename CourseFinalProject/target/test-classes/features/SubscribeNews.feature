@@ -1,3 +1,4 @@
+@Frontend
 Feature: Subscribe testmaster.vn
 
   @tags case1
@@ -8,7 +9,12 @@ Feature: Subscribe testmaster.vn
 
     Examples: 
       | email           |
+      |									|      
       | abc             |
+      | abc@123.123     |
+      | abc@ 123.com    |
+      | abc@123. com    |
+      
 
   @tags case2
   Scenario Outline: Registering successfully with a valid email

@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.mail.Message;
 
+import org.apache.tools.ant.types.FileList.FileName;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import BusinessObject.Account;
 import common.Constants;
@@ -16,8 +15,8 @@ import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
-import net.serenitybdd.screenplay.actions.Scroll;
 import net.thucydides.core.annotations.DefaultUrl;
+import net.serenitybdd.screenplay.actions.*;
 
 @DefaultUrl("http://testmaster.vn/admin")
 public class TestMasterAdminPage extends PageObject {
@@ -80,6 +79,9 @@ public class TestMasterAdminPage extends PageObject {
 	@FindBy(xpath = ".//div[contains(@class, 'note-hint-popover') and contains(@style, 'display: block')]")
 	private WebElementFacade mergeTagList;
 
+	@FindBy(xpath = ".//div[@class='list-files']//td[@class='file-name']")
+	private List<WebElementFacade> lstDisplayedFiles;
+
 	public void enter_email(String email) {
 		txtEmail.clear();
 		txtEmail.type(email);
@@ -115,18 +117,46 @@ public class TestMasterAdminPage extends PageObject {
 		mnuSendNews.click();
 	}
 
-	public void add_file() {
-		JavascriptExecutor js = (JavascriptExecutor) getDriver();
-		/*
-		 * I can not scroll by js below so I do hard code line var div =
-		 * document.querySelector(".content"); var btnAttach =
-		 * document.querySelector(".attachment-select'"); var topPos =
-		 * btnAttach.offsetTop; div.scrollTop = topPos;
-		 */
-		js.executeScript("var div = document.querySelector('.content'); div.scrollTop = 700;");
-		WebElement btnAttach = divInfo.findElement(By.xpath("//input[@name='myfile']")); // why I have to do this to
+	public void add_files() throws InterruptedException {
+		WebElement btnAttach = divInfo.findElement(By.xpath(".//input[@name='myfile']")); // why I have to do this to
 																							// find element OK?
-		upload("dataFiles\\test.txt").to(btnAttach);
+		//Utility.scrolled_element_into_view(getDriver(), btnAttach);
+		Scroll.to(btnAttach);
+		List<String> lstFile = init_list_of_file();
+		for (String filename : lstFile) {
+			upload(Constants.FILE_FOLDER + filename).to(btnAttach);
+		}
+		Thread.sleep(1000); // for seeing that files attached
+	}
+
+	public boolean is_list_of_attached_files_display() {
+		String fileName = "";
+		WebElementFacade fileAttachedElement;
+		WebElementFacade fileAttachedIcon;
+		List<String> lstFile = init_list_of_file();
+		boolean isFileDisplayedOK = true;
+		if (lstDisplayedFiles.size() == lstFile.size()) {// the number of displayed files is equal to the number of
+															// input file
+			for (int i = 0; i < lstDisplayedFiles.size(); i++) {
+				fileAttachedElement = lstDisplayedFiles.get(i);
+				fileName = get_file_name_except_extension(lstFile.get(i));
+				if (!fileAttachedElement.getText().startsWith(fileName)) {// file name displayed right
+					isFileDisplayedOK = false;
+					break;
+				}
+
+				fileAttachedIcon = fileAttachedElement.findBy(By.xpath("./..//i[contains(@class,'glyphicon-file')]")); // icon
+																														// according
+																														// to
+																														// each
+																														// file
+				if (!fileAttachedIcon.isDisplayed()) {
+					isFileDisplayedOK = false;
+					break;
+				}
+			}
+		}
+		return isFileDisplayedOK;
 	}
 
 	public void send_news() {
@@ -185,7 +215,8 @@ public class TestMasterAdminPage extends PageObject {
 	}
 
 	public boolean is_merge_tag_marked_as_block(String tagText) {
-		WebElement element = getDriver().findElement(By.xpath(".//span[@class='merge-tag' and contains(text(),'" + tagText + "')]"));
+		WebElement element = getDriver()
+				.findElement(By.xpath(".//span[@class='merge-tag' and contains(text(),'" + tagText + "')]"));
 		return element.isDisplayed();
 	}
 
@@ -235,5 +266,17 @@ public class TestMasterAdminPage extends PageObject {
 		}
 
 		return isAllSubReceiveMail;
+	}
+
+	private List<String> init_list_of_file() {
+		List<String> lstFile = new ArrayList<String>();
+		lstFile.add("file1.txt");
+		lstFile.add("file2.txt");
+		lstFile.add("file3.txt");
+		return lstFile;
+	}
+
+	private String get_file_name_except_extension(String full_file_name) {
+		return full_file_name.substring(0, full_file_name.lastIndexOf(Constants.FILE_EXTENSION_SEPERATOR));
 	}
 }

@@ -1,3 +1,4 @@
+@Backend
 Feature: Admin send news to subscribers on testmaster.vn
 
   @tags case1
@@ -30,4 +31,9 @@ Feature: Admin send news to subscribers on testmaster.vn
     When the user type letter "E" into news content
     And the user select merge tag "Email"
     Then they should see the merge tag will be marked as block
-    
+ 
+ @tags case6
+  Scenario: Attach file
+    Given the user is on send news page
+    When the user add files    
+    Then they should see the list of files with corresponding file icon    

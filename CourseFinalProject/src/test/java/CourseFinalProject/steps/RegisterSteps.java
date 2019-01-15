@@ -7,9 +7,7 @@ import net.thucydides.core.annotations.Steps;
 public class RegisterSteps {
 	@Steps
 	TestMasterUserSteps may;
-	
-	
-	
+
 	@Given("^the user is on testmaster home page$")
 	public void the_user_is_on_testmaster_home_page() throws Exception {
 		may.is_on_home_page();
@@ -55,13 +53,12 @@ public class RegisterSteps {
 
 	@When("^the user does not provide name$")
 	public void the_user_does_not_provide_name() throws Exception {
-	    may.do_register();
+		may.do_register();
 	}
-
 
 	@Then("^they should see the required name message \"([^\"]*)\"$")
 	public void they_should_see_the_required_name_message(String requiredNameMessage) throws Exception {
-	
+
 		may.shoud_see_required_name_message(requiredNameMessage);
 	}
 

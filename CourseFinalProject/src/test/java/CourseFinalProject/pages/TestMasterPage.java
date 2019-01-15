@@ -1,5 +1,4 @@
 package CourseFinalProject.pages;
-
 import javax.mail.Message;
 import org.openqa.selenium.WebDriver;
 
@@ -11,6 +10,7 @@ import common.Utility;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.serenitybdd.screenplay.actions.Scroll;
 import net.thucydides.core.annotations.DefaultUrl;
 
 @DefaultUrl("http://testmaster.vn/")
@@ -55,13 +55,15 @@ public class TestMasterPage extends PageObject {
 		return currentEmailInfo;
 	}
 
+	
 	public void scroll_to_register() {
 		WebDriver driver = getDriver();
 		driver.manage().window().maximize();
-		Utility.scrolled_element_into_view(driver, btnRegister);
+		//Utility.scrolled_element_into_view(driver, btnRegister);
 	}
 
 	public void enter_email(String email) {
+		Scroll.to(txtEmail);
 		txtEmail.clear();
 		txtEmail.type(email);
 	}
@@ -179,5 +181,5 @@ public class TestMasterPage extends PageObject {
 			return true;
 		} else
 			return false;
-	}
+	}	
 }
